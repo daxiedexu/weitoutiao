@@ -1,4 +1,4 @@
-package com.bw.usercenter;
+package com.bw.mainpage.mvvm;
 
 import androidx.appcompat.app.AppCompatActivity;
 
