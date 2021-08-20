@@ -1,0 +1,7 @@
+rootProject.name = "weitoutiao"
+include ':app'
+include ':resource'
+include ':common'
+include ':http'
+include ':mvvm_core'
+include ':usercenter'

@@ -1,0 +1,23 @@
+apply from:"gradles/Version.gradle"
+
+ext{
+    dependencies=[
+            okhttp:"com.squareup.okhttp3:okhttp:$dependenciesVersion.okhttp",
+            retrofit:"com.squareup.retrofit2:retrofit:$dependenciesVersion.retrofit",
+            rxjava:"com.squareup.retrofit2:adapter-rxjava2:$dependenciesVersion.rxjava",
+            rxbinding:"com.jakewharton.rxbinding2:rxbinding:$dependenciesVersion.rxbinding",
+            interceptor:"com.squareup.okhttp3:logging-interceptor:$dependenciesVersion.interceptor",
+            gsonConverter:"com.squareup.retrofit2:converter-gson:$dependenciesVersion.gsonConverter",
+            glide:"com.github.bumptech.glide:glide:$dependenciesVersion.glide",
+            glideCompiler:"com.github.bumptech.glide:compiler:$dependenciesVersion.glideCompiler",
+            kernel:"com.scwang.smart:refresh-layout-kernel:$dependenciesVersion.kernel",
+            headerRefresh:"com.scwang.smart:refresh-header-classics:$dependenciesVersion.headerRefresh",
+            BaseAdapter:"com.github.CymChad:BaseRecyclerViewAdapterHelper:$dependenciesVersion.BaseAdapter"
+    ]
+
+    url=[
+            debug:"http://39.98.153.96:8080/",
+            release:"http://39.98.153.96:8080/",
+            testServerUrl:"http://39.98.153.96:8080/"
+    ]
+}
