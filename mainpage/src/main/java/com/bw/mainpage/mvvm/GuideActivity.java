@@ -13,5 +13,6 @@ public class GuideActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guide);
         //张海旭本地分支
+        //dev分支
     }
 }
