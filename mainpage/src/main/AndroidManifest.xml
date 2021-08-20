@@ -8,6 +8,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Weitoutiao">
+        <activity android:name=".mvvm.HomeActivity"></activity>
         <activity android:name=".mvvm.GuideActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,4 +17,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
