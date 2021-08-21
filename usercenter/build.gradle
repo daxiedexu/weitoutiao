@@ -44,4 +44,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation libs.retrofit
     implementation libs.rxbinding
+    implementation libs.ARouter
+    implementation libs.ARouterCompiler
 }

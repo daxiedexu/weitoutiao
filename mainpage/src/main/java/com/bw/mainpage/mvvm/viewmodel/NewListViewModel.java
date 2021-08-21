@@ -17,9 +17,9 @@ import com.bw.mvvm_core.viewmodel.BaseViewModel;
  * Created by Android Studio.
  * User: 张海旭
  */
-public class NewListLocalModel extends BaseViewModel<HomeRepository> {
+public class NewListViewModel extends BaseViewModel<HomeRepository> {
     MutableLiveData<NewListEntity> mutableLiveData = new MutableLiveData<>();
-    public NewListLocalModel(LifecycleOwner owner) {
+    public NewListViewModel(LifecycleOwner owner) {
         super(owner);
         NewListEntity newListEntity = new NewListEntity();
         if (ThreadUtils.isMainThread()){
