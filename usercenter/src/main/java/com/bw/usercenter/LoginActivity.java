@@ -1,8 +1,14 @@
 package com.bw.usercenter;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 import androidx.lifecycle.Observer;
+
+import com.bw.common.utils.StatusBarColorUtils;
 import com.bw.http.RetrofitManger;
 import com.bw.http.protocol.BaseRespEntity;
 import com.bw.mainpage.mvvm.GuideActivity;
@@ -50,6 +56,11 @@ public class LoginActivity extends BaseActivity<LoginViewModel, ActivityLoginBin
             Intent intent = new Intent(this, RegisterActivity.class);
             startActivity(intent);
         });
+        /**
+         * 更改状态栏、字体颜色
+         */
+        StatusBarColorUtils.setStatusBarColor(LoginActivity.this,Color.WHITE);
+        StatusBarColorUtils.setAndroidNativeLightStatusBar(LoginActivity.this,true);
     }
     @Override
     protected void prepareSetVars(HashMap<Integer, Object> mMap) {
