@@ -3,9 +3,8 @@ package com.bw.mainpage.mvvm.model.net;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.bw.common.ThreadUtils;
+import com.bw.common.utils.ThreadUtils;
 import com.bw.mainpage.mvvm.entity.GuideEntity;
-import com.bw.mainpage.mvvm.entity.NewListEntity;
 import com.bw.mvvm_core.model.IModel;
 
 /**

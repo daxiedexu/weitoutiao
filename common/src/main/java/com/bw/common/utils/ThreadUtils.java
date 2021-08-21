@@ -1,4 +1,4 @@
-package com.bw.common;
+package com.bw.common.utils;
 
 import android.os.Handler;
 import android.os.Looper;

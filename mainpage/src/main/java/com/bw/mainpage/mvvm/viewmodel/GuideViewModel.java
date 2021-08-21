@@ -3,7 +3,7 @@ package com.bw.mainpage.mvvm.viewmodel;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 
-import com.bw.common.ThreadUtils;
+import com.bw.common.utils.ThreadUtils;
 import com.bw.mainpage.mvvm.entity.GuideEntity;
 import com.bw.mainpage.mvvm.repository.HomeRepository;
 import com.bw.mvvm_core.viewmodel.BaseViewModel;

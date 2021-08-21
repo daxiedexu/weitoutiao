@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
 }
 def libs=rootProject.ext.dependencies
 def urls=rootProject.ext.url
@@ -48,6 +48,4 @@ dependencies {
     implementation libs.rxjava
     implementation libs.interceptor
     implementation libs.gsonConverter
-    implementation libs.ARouter
-    implementation libs.ARouterCompiler
 }

@@ -4,7 +4,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.bw.common.ThreadUtils;
+import com.bw.common.utils.ThreadUtils;
 import com.bw.mvvm_core.viewmodel.BaseViewModel;
 import com.bw.usercenter.mvvm.entity.RegisterEntity;
 import com.bw.usercenter.mvvm.repository.UserRepository;
