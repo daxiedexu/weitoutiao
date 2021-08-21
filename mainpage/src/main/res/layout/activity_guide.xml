@@ -8,6 +8,8 @@
             type="com.bw.mainpage.mvvm.viewmodel.GuideViewModel"/>
     </data>
     <LinearLayout
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
