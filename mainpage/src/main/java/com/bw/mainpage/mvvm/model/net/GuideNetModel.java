@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.bw.common.ThreadUtils;
 import com.bw.mainpage.mvvm.entity.GuideEntity;
 import com.bw.mainpage.mvvm.entity.NewListEntity;
-import com.bw.mvvm_core.model.IModel;
+
 
 /**
  * @ClassName GuideNetModel

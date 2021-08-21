@@ -12,7 +12,9 @@ ext{
             glideCompiler:"com.github.bumptech.glide:compiler:$dependenciesVersion.glideCompiler",
             kernel:"com.scwang.smart:refresh-layout-kernel:$dependenciesVersion.kernel",
             headerRefresh:"com.scwang.smart:refresh-header-classics:$dependenciesVersion.headerRefresh",
-            BaseAdapter:"com.github.CymChad:BaseRecyclerViewAdapterHelper:$dependenciesVersion.BaseAdapter"
+            BaseAdapter:"com.github.CymChad:BaseRecyclerViewAdapterHelper:$dependenciesVersion.BaseAdapter",
+            bottom:"com.ashokvarma.android:bottom-navigation-bar:$dependenciesVersion.bottom",
+            FlycoTabLayout: "com.flyco.tablayout:FlycoTabLayout_Lib:$dependenciesVersion.FlycoTabLayout"
     ]
 
     url=[
