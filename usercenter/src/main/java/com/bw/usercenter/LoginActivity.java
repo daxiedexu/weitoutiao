@@ -12,6 +12,7 @@ import com.bw.common.utils.StatusBarColorUtils;
 import com.bw.http.RetrofitManger;
 import com.bw.http.protocol.BaseRespEntity;
 import com.bw.mainpage.mvvm.GuideActivity;
+import com.bw.mainpage.mvvm.HomeActivity;
 import com.bw.mvvm_core.view.BaseActivity;
 import com.bw.usercenter.databinding.ActivityLoginBinding;
 import com.bw.usercenter.mvvm.api.UserCenterApi;
@@ -44,7 +45,7 @@ public class LoginActivity extends BaseActivity<LoginViewModel, ActivityLoginBin
                                         public void onChanged(BaseRespEntity<LoginEntity> loginEntityBaseRespEntity) {
                                             if (loginEntityBaseRespEntity.getCode()==200){
                                                 Toast.makeText(LoginActivity.this, "登录成功!", Toast.LENGTH_SHORT).show();
-                                                Intent intent = new Intent(LoginActivity.this, GuideActivity.class);
+                                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                                 startActivity(intent);
                                             }
                                         }
