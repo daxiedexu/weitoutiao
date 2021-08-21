@@ -10,6 +10,8 @@ ext{
         glideCompiler:"4.12.0",
         kernel:"2.0.3",
         headerRefresh:"2.0.3",
-        BaseAdapter:"3.0.0"
+        BaseAdapter:"3.0.0",
+        ARouter:"1.4.1",
+        ARouterCompiler:"1.2.2"
     ]
 }

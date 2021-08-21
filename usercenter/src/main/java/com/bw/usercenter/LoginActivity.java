@@ -18,7 +18,6 @@ import java.util.concurrent.TimeUnit;
 import io.reactivex.functions.Consumer;
 
 public class LoginActivity extends BaseActivity<LoginViewModel, ActivityLoginBinding> {
-
     @Override
     protected void initEvent() {
         mBinding.setLoginOnClick(view->{
@@ -36,7 +35,9 @@ public class LoginActivity extends BaseActivity<LoginViewModel, ActivityLoginBin
                                     .observe(LoginActivity.this, new Observer<BaseRespEntity<LoginEntity>>() {
                                         @Override
                                         public void onChanged(BaseRespEntity<LoginEntity> loginEntityBaseRespEntity) {
-                                            Toast.makeText(LoginActivity.this, "登录了哈~", Toast.LENGTH_SHORT).show();
+                                            if (loginEntityBaseRespEntity.getCode()==200){
+                                                Toast.makeText(LoginActivity.this, "登录成功!", Toast.LENGTH_SHORT).show();
+                                            }
                                         }
                                     });
                         }
@@ -47,17 +48,14 @@ public class LoginActivity extends BaseActivity<LoginViewModel, ActivityLoginBin
             startActivity(intent);
         });
     }
-
     @Override
     protected void prepareSetVars(HashMap<Integer, Object> mMap) {
         mMap.put(BR.LoginViewModel,mViewModel);
     }
-
     @Override
     protected LoginViewModel createViewModel() {
         return new LoginViewModel(this);
     }
-
     @Override
     protected int getLayout() {
         return R.layout.activity_login;

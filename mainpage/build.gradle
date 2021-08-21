@@ -48,4 +48,6 @@ dependencies {
     implementation libs.rxjava
     implementation libs.interceptor
     implementation libs.gsonConverter
+    implementation libs.ARouter
+    implementation libs.ARouterCompiler
 }
