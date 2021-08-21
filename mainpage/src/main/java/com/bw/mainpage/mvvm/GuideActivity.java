@@ -1,7 +1,11 @@
 package com.bw.mainpage.mvvm;
 
 import androidx.lifecycle.Observer;
+
+import android.graphics.Color;
 import android.widget.Toast;
+
+import com.bw.common.utils.StatusBarColorUtils;
 import com.bw.http.RetrofitManger;
 import com.bw.mainpage.BR;
 import com.bw.mainpage.R;
@@ -25,6 +29,11 @@ public class GuideActivity extends BaseActivity<GuideViewModel, ActivityGuideBin
                         Toast.makeText(GuideActivity.this, guideEntity.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
+        /**
+         * 更改状态栏、字体颜色
+         */
+        StatusBarColorUtils.setStatusBarColor(GuideActivity.this, Color.WHITE);
+        StatusBarColorUtils.setAndroidNativeLightStatusBar(GuideActivity.this,true);
     }
 
     @Override

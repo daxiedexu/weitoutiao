@@ -1,8 +1,11 @@
 package com.bw.usercenter;
 
+import android.graphics.Color;
 import android.widget.Toast;
 
 import androidx.lifecycle.Observer;
+
+import com.bw.common.utils.StatusBarColorUtils;
 import com.bw.http.RetrofitManger;
 import com.bw.http.protocol.BaseRespEntity;
 import com.bw.mvvm_core.view.BaseActivity;
@@ -42,6 +45,11 @@ public class RegisterActivity extends BaseActivity<RegisterViewModel, ActivityRe
                         }
                     });
         });
+        /**
+         * 更改状态栏、字体颜色
+         */
+        StatusBarColorUtils.setStatusBarColor(RegisterActivity.this, Color.WHITE);
+        StatusBarColorUtils.setAndroidNativeLightStatusBar(RegisterActivity.this,true);
     }
 
     @Override

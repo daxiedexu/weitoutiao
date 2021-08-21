@@ -1,9 +1,13 @@
 package com.bw.mainpage.mvvm;
 
 import androidx.lifecycle.Observer;
+
+import android.graphics.Color;
 import android.widget.Toast;
 
+import com.bw.common.utils.StatusBarColorUtils;
 import com.bw.http.RetrofitManger;
+import com.bw.mainpage.BR;
 import com.bw.mainpage.R;
 import com.bw.mainpage.databinding.ActivityHomeBinding;
 import com.bw.mainpage.mvvm.api.HomeApi;
@@ -17,11 +21,6 @@ public class HomeActivity extends BaseActivity<NewListViewModel, ActivityHomeBin
 
     @Override
     protected void initEvent() {
-
-    }
-
-    @Override
-    protected void prepareSetVars(HashMap<Integer, Object> mMap) {
         RetrofitManger.getInstance().getRetrofit().create(HomeApi.class)
                 .newList(1,1,10)
                 .observe(HomeActivity.this, new Observer<NewListEntity>() {
@@ -30,6 +29,16 @@ public class HomeActivity extends BaseActivity<NewListViewModel, ActivityHomeBin
                         Toast.makeText(HomeActivity.this, newListEntity.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
+        /**
+         * 更改状态栏、字体颜色
+         */
+        StatusBarColorUtils.setStatusBarColor(HomeActivity.this, Color.WHITE);
+        StatusBarColorUtils.setAndroidNativeLightStatusBar(HomeActivity.this,true);
+    }
+
+    @Override
+    protected void prepareSetVars(HashMap<Integer, Object> mMap) {
+        mMap.put(BR.HomeViewModel,mViewModel);
     }
 
     @Override
