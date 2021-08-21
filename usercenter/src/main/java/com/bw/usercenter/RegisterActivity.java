@@ -1,7 +1,6 @@
 package com.bw.usercenter;
 
 import android.widget.Toast;
-
 import androidx.lifecycle.Observer;
 import com.bw.http.RetrofitManger;
 import com.bw.http.protocol.BaseRespEntity;
@@ -11,7 +10,6 @@ import com.bw.usercenter.mvvm.api.UserCenterApi;
 import com.bw.usercenter.mvvm.entity.RegisterEntity;
 import com.bw.usercenter.mvvm.viewmodel.RegisterViewModel;
 import com.jakewharton.rxbinding2.view.RxView;
-
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
