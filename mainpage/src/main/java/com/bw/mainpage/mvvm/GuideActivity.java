@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.bw.mainpage.R;
+
 public class GuideActivity extends AppCompatActivity {
 
     @Override
