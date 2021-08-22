@@ -2,7 +2,6 @@ package com.bw.mainpage.mvvm;
 
 import androidx.lifecycle.Observer;
 import android.widget.Toast;
-
 import com.bw.http.RetrofitManger;
 import com.bw.mainpage.R;
 import com.bw.mainpage.databinding.ActivityHomeBinding;
@@ -10,7 +9,6 @@ import com.bw.mainpage.mvvm.api.HomeApi;
 import com.bw.mainpage.mvvm.entity.NewListEntity;
 import com.bw.mainpage.mvvm.viewmodel.NewListViewModel;
 import com.bw.mvvm_core.view.BaseActivity;
-
 import java.util.HashMap;
 
 public class HomeActivity extends BaseActivity<NewListViewModel, ActivityHomeBinding> {
