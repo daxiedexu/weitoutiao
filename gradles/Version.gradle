@@ -12,6 +12,8 @@ ext{
         headerRefresh:"2.0.3",
         BaseAdapter:"3.0.0",
         bottom:"2.0.5",
-        FlycoTabLayout:"2.0.2@aar"
+        FlycoTabLayout:"2.0.2@aar",
+        SmartRefreshLayout:"1.1.0"
     ]
+
 }
