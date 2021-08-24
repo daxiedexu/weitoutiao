@@ -61,8 +61,6 @@ public class Cate_fragment extends BaseFragment<NewListViewModel, ActivityHomeBi
         cateSm.setOnRefreshLoadMoreListener(this);
 
 
-
-
         DividerItemDecoration dividerItemDecoration=new DividerItemDecoration(getContext( ), DividerItemDecoration.VERTICAL);
         cateRv.addItemDecoration(dividerItemDecoration);
         cateRv.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -74,9 +72,6 @@ public class Cate_fragment extends BaseFragment<NewListViewModel, ActivityHomeBi
                         show(newListEntity.getData());
                     }
                 });
-
-
-
 
     }
 

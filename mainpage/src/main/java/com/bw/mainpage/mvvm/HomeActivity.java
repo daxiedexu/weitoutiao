@@ -8,8 +8,12 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
@@ -49,23 +53,16 @@ public class HomeActivity extends BaseActivity<NewListViewModel, ActivityHomeBin
     private ViewPager mainVp;
 
     private EditText homeBtn;
-
-
+    private android.widget.ImageView homeAdd;
 
 
     @Override
     protected void initEvent() {
         homeBtn = (EditText) findViewById(R.id.home_btn);
+        homeAdd = (ImageView) findViewById(R.id.home_add);
 
 
         List<CacheBean> all=CacheDatabase.getInstance(this).getCacheDao( ).getAll( );
-
-
-
-
-
-
-
 
         /**
          * 更改状态栏、字体颜色
@@ -152,6 +149,19 @@ public class HomeActivity extends BaseActivity<NewListViewModel, ActivityHomeBin
 
             }
         });
+        homeAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupWindow popupWindow = new PopupWindow(HomeActivity.this);
+                popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+                popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+                popupWindow.setOutsideTouchable(true);
+                View inflate = LayoutInflater.from(HomeActivity.this).inflate(R.layout.item_pop, null);
+                popupWindow.setContentView(inflate);
+                popupWindow.showAsDropDown(v,0,0);
+
+            }
+        });
     }
 
     @Override
@@ -174,4 +184,5 @@ public class HomeActivity extends BaseActivity<NewListViewModel, ActivityHomeBin
         super.onDestroy( );
         CacheDatabase.getInstance(this).getCacheDao().deleteAll();
     }
+
 }
