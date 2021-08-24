@@ -45,7 +45,7 @@ public class LoginActivity extends BaseActivity<LoginViewModel, ActivityLoginBin
                                         public void onChanged(BaseRespEntity<LoginEntity> loginEntityBaseRespEntity) {
                                             if (loginEntityBaseRespEntity.getCode()==200){
                                                 Toast.makeText(LoginActivity.this, "登录成功!", Toast.LENGTH_SHORT).show();
-                                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                                Intent intent = new Intent(LoginActivity.this, GuideActivity.class);
                                                 startActivity(intent);
                                             }
                                         }
@@ -53,9 +53,16 @@ public class LoginActivity extends BaseActivity<LoginViewModel, ActivityLoginBin
                         }
                     });
         });
+
+
+
+
         mBinding.setSkipOnClick(view->{
             Intent intent = new Intent(this, RegisterActivity.class);
             startActivity(intent);
+
+
+
         });
         /**
          * 更改状态栏、字体颜色

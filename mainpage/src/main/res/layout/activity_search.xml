@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".mvvm.SearchActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+        <EditText
+            android:id="@+id/search_edit"
+            android:drawableRight="@drawable/photo"
+            android:drawableLeft="@drawable/search"
+            android:hint="户外背包"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edit"
+            android:layout_weight="8"
+            android:layout_width="0dp"
+            android:layout_height="40dp">
+
+        </EditText>
+        <TextView
+            android:id="@+id/search_text"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="取消"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+        </TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+        <TextView
+            android:textSize="18sp"
+            android:text="搜索历史"
+            android:layout_weight="8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+        </TextView>
+        <ImageView
+            android:id="@+id/search_del"
+            android:src="@drawable/rubbish"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+        </ImageView>
+    </LinearLayout>
+    <com.bw.mainpage.mvvm.customview.LineGroup
+        android:id="@+id/search_line"
+        android:layout_width="match_parent"
+        android:layout_weight="3"
+        android:layout_height="0dp">
+
+
+    </com.bw.mainpage.mvvm.customview.LineGroup>
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+        <TextView
+            android:textSize="18sp"
+            android:text="搜索发现"
+            android:layout_weight="8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+        </TextView>
+        <ImageView
+            android:src="@drawable/refresh"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+        </ImageView>
+    </LinearLayout>
+    <com.bw.mainpage.mvvm.customview.LineGroup
+        android:layout_width="match_parent"
+        android:layout_weight="7"
+        android:layout_height="0dp">
+        <com.bw.mainpage.mvvm.customview.MyBtnView
+            android:text="历史"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </com.bw.mainpage.mvvm.customview.MyBtnView>
+        <com.bw.mainpage.mvvm.customview.MyBtnView
+            android:text="历史"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </com.bw.mainpage.mvvm.customview.MyBtnView>
+        <com.bw.mainpage.mvvm.customview.MyBtnView
+            android:text="历史"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </com.bw.mainpage.mvvm.customview.MyBtnView>
+        <com.bw.mainpage.mvvm.customview.MyBtnView
+            android:text="历史"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </com.bw.mainpage.mvvm.customview.MyBtnView>
+        <com.bw.mainpage.mvvm.customview.MyBtnView
+            android:text="历史"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </com.bw.mainpage.mvvm.customview.MyBtnView>
+    </com.bw.mainpage.mvvm.customview.LineGroup>
+</LinearLayout>

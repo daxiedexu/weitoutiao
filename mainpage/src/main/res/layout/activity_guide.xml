@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
+            name="view"
+            type="com.bw.mainpage.mvvm.GuideActivity" />
+        <variable
             name="GuideViewModel"
             type="com.bw.mainpage.mvvm.viewmodel.GuideViewModel"/>
     </data>
@@ -15,5 +18,115 @@
         android:layout_height="match_parent"
         tools:context=".mvvm.GuideActivity">
 
+        <com.bw.mainpage.mvvm.customview.LineGroup
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.bw.mainpage.mvvm.customview.MyBtnView
+                android:id="@+id/my_1"
+                android:text="游戏"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </com.bw.mainpage.mvvm.customview.MyBtnView>
+            <com.bw.mainpage.mvvm.customview.MyBtnView
+                android:id="@+id/my_2"
+                android:text="娱乐"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </com.bw.mainpage.mvvm.customview.MyBtnView>
+            <com.bw.mainpage.mvvm.customview.MyBtnView
+                android:id="@+id/my_3"
+                android:text="体育"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </com.bw.mainpage.mvvm.customview.MyBtnView>
+
+            <com.bw.mainpage.mvvm.customview.MyBtnView
+                android:text="汽车"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </com.bw.mainpage.mvvm.customview.MyBtnView>
+            <com.bw.mainpage.mvvm.customview.MyBtnView
+
+                android:text="财经"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </com.bw.mainpage.mvvm.customview.MyBtnView>
+            <com.bw.mainpage.mvvm.customview.MyBtnView
+                android:text="科技"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </com.bw.mainpage.mvvm.customview.MyBtnView>
+            <com.bw.mainpage.mvvm.customview.MyBtnView
+                android:text="军事"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </com.bw.mainpage.mvvm.customview.MyBtnView>
+            <com.bw.mainpage.mvvm.customview.MyBtnView
+                android:text="时尚"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </com.bw.mainpage.mvvm.customview.MyBtnView>
+            <com.bw.mainpage.mvvm.customview.MyBtnView
+                android:text="历史"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </com.bw.mainpage.mvvm.customview.MyBtnView>
+            <com.bw.mainpage.mvvm.customview.MyBtnView
+                android:text="旅游"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </com.bw.mainpage.mvvm.customview.MyBtnView>
+            <com.bw.mainpage.mvvm.customview.MyBtnView
+                android:text="美文"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </com.bw.mainpage.mvvm.customview.MyBtnView>
+            <com.bw.mainpage.mvvm.customview.MyBtnView
+                android:text="美食"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </com.bw.mainpage.mvvm.customview.MyBtnView>
+
+
+        </com.bw.mainpage.mvvm.customview.LineGroup>
+
+        <Button
+            android:id="@+id/guide_btn"
+            android:background="#FFC107"
+            android:text="下一步"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </Button>
+
     </LinearLayout>
+
+
 </layout>

@@ -1,5 +1,7 @@
 package com.bw.mainpage.mvvm.entity;
 
+import com.chad.library.adapter.base.entity.MultiItemEntity;
+
 /**
  * @ClassName NewListEntity
  * @Description TODO
@@ -9,7 +11,7 @@ package com.bw.mainpage.mvvm.entity;
  * Created by Android Studio.
  * User: 张海旭
  */
-public class NewListEntity {
+public class NewListEntity implements MultiItemEntity {
 
     public Integer id;
     public String newscode;
@@ -22,6 +24,7 @@ public class NewListEntity {
     public String sourceurl;
     public String mainimgurl;
     public String istop;
+    public int type;
 
     public NewListEntity() {
     }
@@ -38,6 +41,15 @@ public class NewListEntity {
         this.sourceurl = sourceurl;
         this.mainimgurl = mainimgurl;
         this.istop = istop;
+        this.type = type;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type=type;
     }
 
     public Integer getId() {
@@ -143,5 +155,17 @@ public class NewListEntity {
                 ", mainimgurl='" + mainimgurl + '\'' +
                 ", istop='" + istop + '\'' +
                 '}';
+    }
+
+    @Override
+    public int getItemType() {
+        if(type%3==0){
+            return 0;
+        }else if(type%3==1){
+            return 1;
+        }else if(type%3==2){
+            return 2;
+        }
+        return 0;
     }
 }

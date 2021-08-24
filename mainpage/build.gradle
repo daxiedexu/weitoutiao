@@ -40,6 +40,7 @@ dependencies {
     implementation project(path: ':mvvm_core')
     implementation project(path: ':resource')
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -48,9 +49,12 @@ dependencies {
     implementation libs.rxjava
     implementation libs.interceptor
     implementation libs.gsonConverter
-
+    implementation libs.BaseAdapter
     implementation libs.bottom
     implementation libs.FlycoTabLayout
+    implementation libs.glide
+    implementation libs.glideCompiler
+    implementation libs.SmartRefreshLayout
 
 
 
