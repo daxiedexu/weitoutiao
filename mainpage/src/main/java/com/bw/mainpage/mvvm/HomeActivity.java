@@ -101,11 +101,20 @@ public class HomeActivity extends BaseActivity<NewListViewModel, ActivityHomeBin
             strings.add(all.get(i).classify);
         }
 
+
         strings.add("关注");
         strings.add("关注");
         strings.add("关注");
         strings.add("关注");
 
+
+
+        int size=strings.size( );
+        if(fragments.size()>size){
+            for (int i=0; i <fragments.size()-size ; i++) {
+                strings.add("添加");
+            }
+        }
 
 
         VPAdapter vpAdapter=new VPAdapter(getSupportFragmentManager( ), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, fragments,strings);
@@ -158,5 +167,11 @@ public class HomeActivity extends BaseActivity<NewListViewModel, ActivityHomeBin
     @Override
     protected int getLayout() {
         return R.layout.activity_home;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy( );
+        CacheDatabase.getInstance(this).getCacheDao().deleteAll();
     }
 }
