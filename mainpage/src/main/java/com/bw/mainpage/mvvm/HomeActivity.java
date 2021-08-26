@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
@@ -35,6 +36,15 @@ import com.bw.mainpage.mvvm.viewmodel.NewListViewModel;
 import com.bw.mvvm_core.view.BaseActivity;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
+import com.google.android.material.tabs.TabLayout;
+import com.tencent.smtt.export.external.TbsCoreSettings;
+import com.tencent.smtt.sdk.QbSdk;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.editorpage.ShareActivity;
+import com.umeng.socialize.media.UMImage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,36 +52,33 @@ import java.util.List;
 
 public class HomeActivity extends BaseActivity<NewListViewModel, ActivityHomeBinding> {
 
-
+    private ImageView homeShare;
     private BottomNavigationBar mainBnb;
     private SlidingTabLayout mainTab;
     private RecyclerView mainTabcs;
     private ViewPager mainVp;
-
     private EditText homeBtn;
-
-
-
 
     @Override
     protected void initEvent() {
+
+        homeShare = (ImageView) findViewById(R.id.home_share);
         homeBtn = (EditText) findViewById(R.id.home_btn);
-
-
         List<CacheBean> all=CacheDatabase.getInstance(this).getCacheDao( ).getAll( );
-
-
-
-
-
-
-
 
         /**
          * 更改状态栏、字体颜色
          */
         StatusBarColorUtils.setStatusBarColor(HomeActivity.this, Color.RED);
         StatusBarColorUtils.setAndroidNativeLightStatusBar(HomeActivity.this,false);
+
+        // 在调用TBS初始化、创建WebView之前进行如下配置
+        HashMap map = new HashMap();
+        map.put(TbsCoreSettings.TBS_SETTINGS_USE_SPEEDY_CLASSLOADER, true);
+        map.put(TbsCoreSettings.TBS_SETTINGS_USE_DEXLOADER_SERVICE, true);
+        QbSdk.initTbsSettings(map);
+
+
 
         homeBtn.setOnClickListener(new View.OnClickListener( ) {
             @Override
@@ -81,10 +88,10 @@ public class HomeActivity extends BaseActivity<NewListViewModel, ActivityHomeBin
             }
         });
 
-
+        mainBnb = (BottomNavigationBar) findViewById(R.id.main_bnb);
         mainTab = (SlidingTabLayout) findViewById(R.id.main_tab);
         mainVp = (ViewPager) findViewById(R.id.main_vp);
-        mainBnb = (BottomNavigationBar) findViewById(R.id.main_bnb);
+
 
         ArrayList<Fragment> fragments=new ArrayList<>( );
         fragments.add(new Attention_fragment());
@@ -145,6 +152,63 @@ public class HomeActivity extends BaseActivity<NewListViewModel, ActivityHomeBin
 
             }
         });
+        mainVp.addOnPageChangeListener(new ViewPager.OnPageChangeListener( ) {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                for (int i=0; i < mainTab.getTabCount( ); i++) {
+                    if(i==position){
+                        mainTab.getTitleView(i).setTextSize(24);
+                    }else {
+                        mainTab.getTitleView(i).setTextSize(16);
+                    }
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+
+
+
+
+
+        UMImage image =new UMImage(HomeActivity.this, R.drawable.box_24);//本地文件
+        homeShare.setOnClickListener(new View.OnClickListener( ) {
+            @Override
+            public void onClick(View v) {
+                new ShareAction(HomeActivity.this).withMedia(image).setDisplayList(SHARE_MEDIA.QZONE,SHARE_MEDIA.QQ,SHARE_MEDIA.WEIXIN)
+                        .setCallback(new UMShareListener( ) {
+                            @Override
+                            public void onStart(SHARE_MEDIA share_media) {
+
+                            }
+
+                            @Override
+                            public void onResult(SHARE_MEDIA share_media) {
+
+                            }
+
+                            @Override
+                            public void onError(SHARE_MEDIA share_media, Throwable throwable) {
+
+                            }
+
+                            @Override
+                            public void onCancel(SHARE_MEDIA share_media) {
+
+                            }
+                        }).open();
+            }
+        });
+
     }
 
     @Override
@@ -167,4 +231,12 @@ public class HomeActivity extends BaseActivity<NewListViewModel, ActivityHomeBin
         super.onDestroy( );
         CacheDatabase.getInstance(this).getCacheDao().deleteAll();
     }
+
+    @Override
+    protected void onActivityResult(int requestCode,int resultCode,Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+    }
+
+
 }

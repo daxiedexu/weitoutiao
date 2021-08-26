@@ -15,7 +15,6 @@
         android:layout_height="match_parent"
         tools:context=".mvvm.Fragment.Cate_fragment">
 
-
         <com.scwang.smartrefresh.layout.SmartRefreshLayout
             android:id="@+id/cate_sm"
             android:layout_width="match_parent"
@@ -27,13 +26,29 @@
 
              </com.scwang.smartrefresh.layout.header.ClassicsHeader>
 
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/cate_rv"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            </androidx.recyclerview.widget.RecyclerView>
+                <TextView
+                    android:background="#03A9F4"
+                    android:visibility="gone"
+                    android:id="@+id/cate_tz"
+                    android:text="微头条推荐引擎有10条更新"
+                    android:textColor="#0055FF"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                </TextView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/cate_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </androidx.recyclerview.widget.RecyclerView>
+            </LinearLayout>
+
             <com.scwang.smartrefresh.layout.footer.ClassicsFooter
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">

@@ -8,6 +8,8 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
+
+        applicationId "com.bw.weitoutiao"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
@@ -15,6 +17,9 @@ android {
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+
+        manifestPlaceholders = [qqappid:"1110635796"]
     }
 
     buildTypes {
@@ -30,6 +35,8 @@ android {
     dataBinding {
         enabled = true
     }
+
+
 }
 
 dependencies {
@@ -47,4 +54,10 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     implementation libs.retrofit
     implementation libs.rxbinding
+
+
+
+
+
+
 }
