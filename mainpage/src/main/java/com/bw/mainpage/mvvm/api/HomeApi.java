@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData;
 import com.bw.http.protocol.BaseRespEntity;
 import com.bw.mainpage.mvvm.entity.GuideEntity;
 import com.bw.mainpage.mvvm.entity.NewListEntity;
+import com.bw.mainpage.mvvm.entity.NewsDetailEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,4 +27,8 @@ public interface HomeApi {
     LiveData<BaseRespEntity<List<GuideEntity>>> guide();
     @GET("api/News/getNews?")
     LiveData<BaseRespEntity<List<NewListEntity>>> newList(@Query("newstype") int newstype, @Query("pagenum") int pagenum, @Query("pagesize") int pagesize);
+    @GET("api/NewsDetail/getNewsDetail")
+    LiveData<NewsDetailEntity> newsdeta(@Query("newscode") String newscode);
+
+
 }

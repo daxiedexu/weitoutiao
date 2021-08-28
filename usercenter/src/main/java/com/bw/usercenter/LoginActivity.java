@@ -20,6 +20,8 @@ import com.bw.usercenter.mvvm.entity.LoginEntity;
 import com.bw.usercenter.mvvm.viewmodel.LoginViewModel;
 import com.jakewharton.rxbinding2.view.RxView;
 
+
+
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
@@ -83,4 +85,6 @@ public class LoginActivity extends BaseActivity<LoginViewModel, ActivityLoginBin
     protected int getLayout() {
         return R.layout.activity_login;
     }
+
+
 }

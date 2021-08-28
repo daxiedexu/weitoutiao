@@ -13,7 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+
 import android.widget.PopupWindow;
+
 import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
@@ -55,6 +57,15 @@ import com.bw.mainpage.mvvm.viewmodel.NewListViewModel;
 import com.bw.mvvm_core.view.BaseActivity;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
+import com.google.android.material.tabs.TabLayout;
+import com.tencent.smtt.export.external.TbsCoreSettings;
+import com.tencent.smtt.sdk.QbSdk;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.editorpage.ShareActivity;
+import com.umeng.socialize.media.UMImage;
 
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.flyco.tablayout.SlidingTabLayout;
@@ -70,44 +81,52 @@ import java.util.List;
 
 public class HomeActivity extends BaseActivity<NewListViewModel, ActivityHomeBinding> {
 
-
+    private ImageView homeShare;
     private BottomNavigationBar mainBnb;
     private SlidingTabLayout mainTab;
     private RecyclerView mainTabcs;
     private ViewPager mainVp;
-
     private EditText homeBtn;
     private android.widget.ImageView homeAdd;
 
-
     @Override
     protected void initEvent() {
+
         homeBtn = (EditText) findViewById(R.id.home_btn);
         homeAdd = (ImageView) findViewById(R.id.home_add);
 
 
-        List<CacheBean> all=CacheDatabase.getInstance(this).getCacheDao( ).getAll( );
+        homeShare = (ImageView) findViewById(R.id.home_share);
+        homeBtn = (EditText) findViewById(R.id.home_btn);
+        List<CacheBean> all = CacheDatabase.getInstance(this).getCacheDao().getAll();
 
         /**
          * 更改状态栏、字体颜色
          */
         StatusBarColorUtils.setStatusBarColor(HomeActivity.this, Color.RED);
-        StatusBarColorUtils.setAndroidNativeLightStatusBar(HomeActivity.this,false);
+        StatusBarColorUtils.setAndroidNativeLightStatusBar(HomeActivity.this, false);
 
-        homeBtn.setOnClickListener(new View.OnClickListener( ) {
+        // 在调用TBS初始化、创建WebView之前进行如下配置
+        HashMap map = new HashMap();
+        map.put(TbsCoreSettings.TBS_SETTINGS_USE_SPEEDY_CLASSLOADER, true);
+        map.put(TbsCoreSettings.TBS_SETTINGS_USE_DEXLOADER_SERVICE, true);
+        QbSdk.initTbsSettings(map);
+
+
+        homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(HomeActivity.this, SearchActivity.class);
+                Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
                 startActivity(intent);
             }
         });
 
-
+        mainBnb = (BottomNavigationBar) findViewById(R.id.main_bnb);
         mainTab = (SlidingTabLayout) findViewById(R.id.main_tab);
         mainVp = (ViewPager) findViewById(R.id.main_vp);
-        mainBnb = (BottomNavigationBar) findViewById(R.id.main_bnb);
 
-        ArrayList<Fragment> fragments=new ArrayList<>( );
+
+        ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new Attention_fragment());
         fragments.add(new Cate_fragment());
         fragments.add(new Finance_fragment());
@@ -115,54 +134,46 @@ public class HomeActivity extends BaseActivity<NewListViewModel, ActivityHomeBin
         fragments.add(new Hot_fragment());
         fragments.add(new Recommend_fragment());
 
-        ArrayList<String> strings=new ArrayList<>( );
+        ArrayList<String> strings = new ArrayList<>();
         strings.add("关注");
         strings.add("推荐");
-        for (int i=0; i < all.size(); i++) {
+        for (int i = 0; i < all.size(); i++) {
             strings.add(all.get(i).classify);
         }
 
-
-        strings.add("关注");
-        strings.add("关注");
-        strings.add("关注");
-        strings.add("关注");
-
-
-
-        int size=strings.size( );
-        if(fragments.size()>size){
-            for (int i=0; i <fragments.size()-size ; i++) {
+        int size = strings.size();
+        if (fragments.size() > size) {
+            for (int i = 0; i < fragments.size() - size; i++) {
                 strings.add("添加");
             }
         }
 
 
-        VPAdapter vpAdapter=new VPAdapter(getSupportFragmentManager( ), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, fragments,strings);
+        VPAdapter vpAdapter = new VPAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, fragments, strings);
         mainVp.setAdapter(vpAdapter);
         mainTab.setViewPager(mainVp);
+
 
 
         mainBnb.setMode(BottomNavigationBar.MODE_FIXED);
         mainBnb.setActiveColor(android.R.color.holo_red_dark);
         mainBnb.setInActiveColor(R.color.black);
-        mainBnb.addItem(new BottomNavigationItem(R.drawable.home_24,"首页"))
-                .addItem(new BottomNavigationItem(R.drawable.video_24,"视频"))
-                .addItem(new BottomNavigationItem(R.drawable.message_24,"微头条"))
-                .addItem(new BottomNavigationItem(R.drawable.box_24,"我的"))
+        mainBnb.addItem(new BottomNavigationItem(R.drawable.home_24, "首页"))
+                .addItem(new BottomNavigationItem(R.drawable.video_24, "视频"))
+                .addItem(new BottomNavigationItem(R.drawable.message_24, "微头条"))
+                .addItem(new BottomNavigationItem(R.drawable.box_24, "我的"))
                 .initialise();
 
 
-
         mainTab.getTitleView(0).setTextSize(24);
-        mainTab.setOnTabSelectListener(new OnTabSelectListener( ) {
+        mainTab.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
 
-                for (int i=0; i < mainTab.getTabCount( ); i++) {
-                    if(i==position){
+                for (int i = 0; i < mainTab.getTabCount(); i++) {
+                    if (i == position) {
                         mainTab.getTitleView(i).setTextSize(24);
-                    }else {
+                    } else {
                         mainTab.getTitleView(i).setTextSize(16);
                     }
                 }
@@ -173,6 +184,60 @@ public class HomeActivity extends BaseActivity<NewListViewModel, ActivityHomeBin
 
             }
         });
+
+        mainVp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                for (int i = 0; i < mainTab.getTabCount(); i++) {
+                    if (i == position) {
+                        mainTab.getTitleView(i).setTextSize(24);
+                    } else {
+                        mainTab.getTitleView(i).setTextSize(16);
+                    }
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        UMImage image = new UMImage(HomeActivity.this, R.drawable.box_24);//本地文件
+        homeShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new ShareAction(HomeActivity.this).withMedia(image).setDisplayList(SHARE_MEDIA.QZONE, SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN)
+                        .setCallback(new UMShareListener() {
+                            @Override
+                            public void onStart(SHARE_MEDIA share_media) {
+
+                            }
+
+                            @Override
+                            public void onResult(SHARE_MEDIA share_media) {
+
+                            }
+
+                            @Override
+                            public void onError(SHARE_MEDIA share_media, Throwable throwable) {
+
+                            }
+
+                            @Override
+                            public void onCancel(SHARE_MEDIA share_media) {
+
+                            }
+                        }).open();
+            }
+        });
+
+
         homeAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -182,36 +247,40 @@ public class HomeActivity extends BaseActivity<NewListViewModel, ActivityHomeBin
                 popupWindow.setOutsideTouchable(true);
                 View inflate = LayoutInflater.from(HomeActivity.this).inflate(R.layout.item_pop, null);
                 popupWindow.setContentView(inflate);
-                popupWindow.showAsDropDown(v,0,0);
+                popupWindow.showAsDropDown(v, 0, 0);
 
             }
         });
+
     }
 
 
-
     @Override
-
     protected void prepareSetVars(HashMap<Integer, Object> mMap) {
-        mMap.put(BR.HomeViewModel,mViewModel);
-    }
-
-    @Override
-    protected NewListViewModel createViewModel() {
-        return new NewListViewModel(this);
-    }
-
-    @Override
-    protected int getLayout() {
-        return R.layout.activity_home;
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy( );
-        CacheDatabase.getInstance(this).getCacheDao().deleteAll();
+        mMap.put(BR.HomeViewModel, mViewModel);
     }
 
 
+        @Override
+        protected NewListViewModel createViewModel () {
+            return new NewListViewModel(this);
+        }
 
-}
+        @Override
+        protected int getLayout () {
+            return R.layout.activity_home;
+        }
+
+        @Override
+        protected void onDestroy () {
+            super.onDestroy();
+            CacheDatabase.getInstance(this).getCacheDao().deleteAll();
+        }
+
+
+        @Override
+        protected void onActivityResult ( int requestCode, int resultCode, Intent data){
+            super.onActivityResult(requestCode, resultCode, data);
+            UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+        }
+    }

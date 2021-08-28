@@ -19,7 +19,7 @@ import java.util.Map;
 /**
  * @ClassName BaseMVVMFragment
  * @Description TODO
- * @Author 崔俊杰
+ * @Author
  * @Date 2021/8/20 0020 13:58
  * @Version 1.0
  * 参考了https://www.jianshu.com/p/f95213a92c4b

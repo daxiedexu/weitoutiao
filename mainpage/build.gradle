@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.library'
+    id 'com.android.application'
 }
 def libs=rootProject.ext.dependencies
 def urls=rootProject.ext.url
@@ -8,6 +8,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
+        multiDexEnabled true
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
@@ -15,6 +16,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+        manifestPlaceholders = [qqappid:"1110635796"]
+
+
     }
 
     buildTypes {
@@ -30,6 +34,8 @@ android {
     dataBinding {
         enabled = true
     }
+
+
 }
 def room_version = "2.3.0"
 dependencies {
@@ -64,8 +70,33 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
+
     implementation libs.bottom
     implementation libs.BaseAdapter
     implementation libs.FlycoTabLayout
+
+
+    api 'com.tencent.tbs:tbssdk:44085'//腾讯TBS
+
+
+    implementation  'com.umeng.umsdk:common:9.4.2'// 必选
+    implementation  'com.umeng.umsdk:asms:1.4.1'// 必选
+    implementation 'com.umeng.umsdk:apm:1.4.2' // 错误分析升级为独立SDK，看crash数据请一定集成，可选
+    implementation  'com.umeng.umsdk:abtest:1.0.0'//使用U-App中ABTest能力，可选
+
+    implementation  'com.umeng.umsdk:share-core:7.1.5'//分享核心库，必选
+    implementation  'com.umeng.umsdk:share-board:7.1.5'//分享面板功能，可选
+
+    implementation 'com.umeng.umsdk:share-wx:7.1.5' //微信完整版
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.7.0'//微信官方依赖库，必选
+
+    implementation 'com.umeng.umsdk:share-qq:7.1.5'//QQ完整版
+    implementation 'com.tencent.tauth:qqopensdk:3.53.0'//QQ官方依赖库，必选
+    implementation 'com.squareup.okhttp3:okhttp:3.12.12'//QQ SDK在3.53.0版本及以上时需要集成okhttp官方依赖库，必选
+
+    //友盟Push依赖
+    implementation 'com.umeng.umsdk:push:6.4.0'
+
+    implementation 'androidx.multidex:multidex:2.0.1'
 
 }
