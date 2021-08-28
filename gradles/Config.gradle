@@ -14,8 +14,12 @@ ext{
             headerRefresh:"com.scwang.smart:refresh-header-classics:$dependenciesVersion.headerRefresh",
             BaseAdapter:"com.github.CymChad:BaseRecyclerViewAdapterHelper:$dependenciesVersion.BaseAdapter",
             bottom:"com.ashokvarma.android:bottom-navigation-bar:$dependenciesVersion.bottom",
+
             FlycoTabLayout: "com.flyco.tablayout:FlycoTabLayout_Lib:$dependenciesVersion.FlycoTabLayout",
-            SmartRefreshLayout: "com.scwang.smartrefresh:SmartRefreshLayout:$dependenciesVersion.SmartRefreshLayout"
+            SmartRefreshLayout: "com.scwang.smartrefresh:SmartRefreshLayout:$dependenciesVersion.SmartRefreshLayout",
+
+            FlycoTabLayout: "com.flyco.tablayout:FlycoTabLayout_Lib:$dependenciesVersion.FlycoTabLayout"
+
     ]
 
     url=[

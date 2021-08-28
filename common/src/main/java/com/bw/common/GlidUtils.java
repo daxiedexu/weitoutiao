@@ -1,6 +1,7 @@
 package com.bw.common;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -26,6 +27,7 @@ public class GlidUtils {
         Glide.with(context).load(url).transform(new CircleCrop()).into(imageView);
     }
     public void GlideRounded(Context context, String url, ImageView imageView,int arr){
+
         Glide.with(context).load(url).transform(new RoundedCorners(arr)).into(imageView);
     }
 }

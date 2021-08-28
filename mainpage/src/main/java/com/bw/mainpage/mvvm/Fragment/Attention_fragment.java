@@ -11,7 +11,10 @@ import android.view.ViewGroup;
 import com.bw.mainpage.R;
 
 
+
 public class Attention_fragment extends Fragment {
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

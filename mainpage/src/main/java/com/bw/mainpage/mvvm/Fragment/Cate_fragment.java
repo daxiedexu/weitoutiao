@@ -48,24 +48,25 @@ public class Cate_fragment extends BaseFragment<NewListViewModel, ActivityHomeBi
     private RecyclerView cateRv;
     private SmartRefreshLayout cateSm;
 
-    boolean refresh=false;
-    int page=1;
+    boolean refresh = false;
+    int page = 1;
     Wn wn;
-    int index=0;
-    int pageSize=12;
+    int index = 0;
+    int pageSize = 12;
+
     @Override
     protected void initEvent() {
         //View inflate=getLayoutInflater( ).inflate(R.layout.fragment_cate_fragment, null);
         cateRv = (RecyclerView) getActivity().findViewById(R.id.cate_rv);
-        cateSm = (SmartRefreshLayout)getActivity(). findViewById(R.id.cate_sm);
+        cateSm = (SmartRefreshLayout) getActivity().findViewById(R.id.cate_sm);
         cateSm.setOnRefreshLoadMoreListener(this);
 
 
-        DividerItemDecoration dividerItemDecoration=new DividerItemDecoration(getContext( ), DividerItemDecoration.VERTICAL);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         cateRv.addItemDecoration(dividerItemDecoration);
         cateRv.setLayoutManager(new LinearLayoutManager(getActivity()));
         RetrofitManger.getInstance().getRetrofit().create(HomeApi.class)
-                .newList(1,page,pageSize)
+                .newList(1, page, pageSize)
                 .observe(getActivity(), new Observer<BaseRespEntity<List<NewListEntity>>>() {
                     @Override
                     public void onChanged(BaseRespEntity<List<NewListEntity>> newListEntity) {
@@ -75,25 +76,25 @@ public class Cate_fragment extends BaseFragment<NewListViewModel, ActivityHomeBi
 
     }
 
-    public void show(List<NewListEntity> data){
+    public void show(List<NewListEntity> data) {
 
         cateSm.finishRefresh();
         cateSm.finishLoadMore();
-        for (int i=0; i < data.size( ); i++) {
-            data.get(i).type=i;
+        for (int i = 0; i < data.size(); i++) {
+            data.get(i).type = i;
         }
 
-        if(wn==null){
-            wn=new Wn(data);
+        if (wn == null) {
+            wn = new Wn(data);
             cateRv.setAdapter(wn);
-        }else {
-            if(refresh){
+        } else {
+            if (refresh) {
                 wn.getData().clear();
             }
             wn.getData().addAll(data);
             wn.notifyDataSetChanged();
         }
-        index=wn.getData().size();
+        index = wn.getData().size();
     }
 
     @Override
@@ -103,7 +104,7 @@ public class Cate_fragment extends BaseFragment<NewListViewModel, ActivityHomeBi
 
     @Override
     protected void prepareSetVars(HashMap<Integer, Object> mMap) {
-        mMap.put(BR.viewmodel,mViewModel);
+        mMap.put(BR.viewmodel, mViewModel);
     }
 
     @Override
@@ -118,24 +119,25 @@ public class Cate_fragment extends BaseFragment<NewListViewModel, ActivityHomeBi
 
     @Override
     public void onLoadMore(@NonNull @NotNull RefreshLayout refreshLayout) {
-        refresh=false;
+        refresh = false;
         page++;
         RetrofitManger.getInstance().getRetrofit().create(HomeApi.class)
-                .newList(1,page,pageSize)
+                .newList(1, page, pageSize)
                 .observe(getActivity(), new Observer<BaseRespEntity<List<NewListEntity>>>() {
                     @Override
                     public void onChanged(BaseRespEntity<List<NewListEntity>> newListEntity) {
                         show(newListEntity.getData());
                     }
                 });
+
     }
 
     @Override
     public void onRefresh(@NonNull @NotNull RefreshLayout refreshLayout) {
-        refresh=true;
-        page=1;
+        refresh = true;
+        page = 1;
         RetrofitManger.getInstance().getRetrofit().create(HomeApi.class)
-                .newList(1,page,pageSize)
+                .newList(1, page, pageSize)
                 .observe(getActivity(), new Observer<BaseRespEntity<List<NewListEntity>>>() {
                     @Override
                     public void onChanged(BaseRespEntity<List<NewListEntity>> newListEntity) {
@@ -144,27 +146,27 @@ public class Cate_fragment extends BaseFragment<NewListViewModel, ActivityHomeBi
                 });
     }
 
-    public class Wn extends BaseMultiItemQuickAdapter<NewListEntity, BaseViewHolder>{
+    public class Wn extends BaseMultiItemQuickAdapter<NewListEntity, BaseViewHolder> {
         public Wn(@Nullable List<NewListEntity> data) {
             super(data);
-            addItemType(0,R.layout.item1);
-            addItemType(1,R.layout.item2);
-            addItemType(2,R.layout.item3);
+            addItemType(0, R.layout.item1);
+            addItemType(1, R.layout.item2);
+            addItemType(2, R.layout.item3);
         }
 
         @Override
         protected void convert(@NotNull BaseViewHolder baseViewHolder, NewListEntity newListEntity) {
 
-            switch (baseViewHolder.getItemViewType()){
+            switch (baseViewHolder.getItemViewType()) {
                 case 0:
-                    baseViewHolder.setText(R.id.item1_tv,newListEntity.title);
+                    baseViewHolder.setText(R.id.item1_tv, newListEntity.title);
                     break;
                 case 1:
-                    baseViewHolder.setText(R.id.item2_tv,newListEntity.title);
+                    baseViewHolder.setText(R.id.item2_tv, newListEntity.title);
                     Glide.with(getActivity()).load(newListEntity.mainimgurl).into((ImageView) baseViewHolder.findView(R.id.item2_img));
                     break;
                 case 2:
-                    baseViewHolder.setText(R.id.item3_tv,newListEntity.title);
+                    baseViewHolder.setText(R.id.item3_tv, newListEntity.title);
                     Glide.with(getActivity()).load(newListEntity.mainimgurl).into((ImageView) baseViewHolder.findView(R.id.item3_img));
                     break;
             }

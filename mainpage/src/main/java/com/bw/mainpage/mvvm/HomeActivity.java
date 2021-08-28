@@ -24,6 +24,21 @@ import com.bw.http.protocol.BaseRespEntity;
 import com.bw.mainpage.BR;
 import com.bw.mainpage.R;
 import com.bw.mainpage.databinding.ActivityHomeBinding;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+
+import android.os.Bundle;
+import android.view.View;
+
+import com.ashokvarma.bottomnavigation.BottomNavigationBar;
+import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.bw.mainpage.R;
+
 import com.bw.mainpage.mvvm.Adapter.VPAdapter;
 import com.bw.mainpage.mvvm.Fragment.Attention_fragment;
 import com.bw.mainpage.mvvm.Fragment.Cate_fragment;
@@ -31,6 +46,7 @@ import com.bw.mainpage.mvvm.Fragment.Finance_fragment;
 import com.bw.mainpage.mvvm.Fragment.History_fragment;
 import com.bw.mainpage.mvvm.Fragment.Hot_fragment;
 import com.bw.mainpage.mvvm.Fragment.Recommend_fragment;
+
 import com.bw.mainpage.mvvm.RoomUtils.CacheBean;
 import com.bw.mainpage.mvvm.RoomUtils.CacheDatabase;
 import com.bw.mainpage.mvvm.api.HomeApi;
@@ -39,6 +55,14 @@ import com.bw.mainpage.mvvm.viewmodel.NewListViewModel;
 import com.bw.mvvm_core.view.BaseActivity;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
+
+import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.flyco.tablayout.SlidingTabLayout;
+import com.flyco.tablayout.listener.OnTabSelectListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -164,7 +188,10 @@ public class HomeActivity extends BaseActivity<NewListViewModel, ActivityHomeBin
         });
     }
 
+
+
     @Override
+
     protected void prepareSetVars(HashMap<Integer, Object> mMap) {
         mMap.put(BR.HomeViewModel,mViewModel);
     }
@@ -184,5 +211,7 @@ public class HomeActivity extends BaseActivity<NewListViewModel, ActivityHomeBin
         super.onDestroy( );
         CacheDatabase.getInstance(this).getCacheDao().deleteAll();
     }
+
+
 
 }

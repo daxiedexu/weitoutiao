@@ -36,7 +36,9 @@ public interface CacheDao {
     @Delete
     void delete(CacheBean user);
 
+
     @Query("DELETE FROM CacheBean")
     void deleteAll();
+
 
 }

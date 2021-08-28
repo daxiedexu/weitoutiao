@@ -14,6 +14,7 @@ import com.bw.mainpage.R;
 public class Hot_fragment extends Fragment {
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

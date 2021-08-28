@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 
 import com.bw.mainpage.R;
 
-public class History_fragment extends Fragment {
 
+public class History_fragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
