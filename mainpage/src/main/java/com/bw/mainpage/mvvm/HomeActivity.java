@@ -30,6 +30,10 @@ import com.bw.mainpage.mvvm.Adapter.VPAdapter;
 import com.bw.mainpage.mvvm.Fragment.Attention_fragment;
 import com.bw.mainpage.mvvm.Fragment.Cate_fragment;
 import com.bw.mainpage.mvvm.Fragment.Finance_fragment;
+import com.bw.mainpage.mvvm.Fragment.Fragment_Headline;
+import com.bw.mainpage.mvvm.Fragment.Fragment_Home;
+import com.bw.mainpage.mvvm.Fragment.Fragment_My;
+import com.bw.mainpage.mvvm.Fragment.Fragment_Video;
 import com.bw.mainpage.mvvm.Fragment.History_fragment;
 import com.bw.mainpage.mvvm.Fragment.Hot_fragment;
 import com.bw.mainpage.mvvm.Fragment.Recommend_fragment;
@@ -69,12 +73,12 @@ public class HomeActivity extends BaseActivity<NewListViewModel, ActivityHomeBin
     protected void initEvent() {
 
             homeBtn=(EditText) findViewById(R.id.home_btn);
-            homeAdd=(ImageView) findViewById(R.id.home_add);
-
-
+            //homeAdd=(ImageView) findViewById(R.id.home_add);
             homeShare=(ImageView) findViewById(R.id.home_share);
-            homeBtn=(EditText) findViewById(R.id.home_btn);
-            List<CacheBean> all=CacheDatabase.getInstance(this).getCacheDao( ).getAll( );
+
+            mainBnb=(BottomNavigationBar) findViewById(R.id.main_bnb);
+            //mainTab=(SlidingTabLayout) findViewById(R.id.main_tab);
+            mainVp=(ViewPager) findViewById(R.id.main_vp);
 
             /**
              * 更改状态栏、字体颜色
@@ -88,46 +92,32 @@ public class HomeActivity extends BaseActivity<NewListViewModel, ActivityHomeBin
             map.put(TbsCoreSettings.TBS_SETTINGS_USE_DEXLOADER_SERVICE, true);
             QbSdk.initTbsSettings(map);
 
-
-            homeBtn.setOnClickListener(new View.OnClickListener( ) {
-                @Override
-                public void onClick(View v) {
-                    Intent intent=new Intent(HomeActivity.this, SearchActivity.class);
-                    startActivity(intent);
-                }
-            });
-
-            mainBnb=(BottomNavigationBar) findViewById(R.id.main_bnb);
-            mainTab=(SlidingTabLayout) findViewById(R.id.main_tab);
-            mainVp=(ViewPager) findViewById(R.id.main_vp);
-
-
-            ArrayList<Fragment> fragments=new ArrayList<>( );
-            fragments.add(new Attention_fragment( ));
-            fragments.add(new Cate_fragment( ));
-            fragments.add(new Finance_fragment( ));
-            fragments.add(new History_fragment( ));
-            fragments.add(new Hot_fragment( ));
-            fragments.add(new Recommend_fragment( ));
-
-            ArrayList<String> strings=new ArrayList<>( );
-            strings.add("关注");
-            strings.add("推荐");
-            for (int i=0; i < all.size( ); i++) {
-                strings.add(all.get(i).classify);
-            }
-
-            int size=strings.size( );
-            if (fragments.size( ) > size) {
-                for (int i=0; i < fragments.size( ) - size; i++) {
-                    strings.add("添加");
-                }
-            }
+//
+//
+//            homeBtn.setOnClickListener(new View.OnClickListener( ) {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent intent=new Intent(HomeActivity.this, SearchActivity.class);
+//                    startActivity(intent);
+//                }
+//            });
+//
+//            VPAdapter vpAdapter=new VPAdapter(getSupportFragmentManager( ), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, fragments, strings);
+//            mainVp.setAdapter(vpAdapter);
+//            mainTab.setViewPager(mainVp);
+//
+//
 
 
-            VPAdapter vpAdapter=new VPAdapter(getSupportFragmentManager( ), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, fragments, strings);
-            mainVp.setAdapter(vpAdapter);
-            mainTab.setViewPager(mainVp);
+        ArrayList<Fragment> fragments=new ArrayList<>( );
+        fragments.add(new Fragment_Home());
+        fragments.add(new Fragment_Headline());
+        fragments.add(new Fragment_Video());
+        fragments.add(new Fragment_My());
+
+//
+        VPAdapter vpAdapter=new VPAdapter(getSupportFragmentManager( ), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, fragments);
+        mainVp.setAdapter(vpAdapter);
 
 
             mainBnb.setMode(BottomNavigationBar.MODE_FIXED);
@@ -138,96 +128,98 @@ public class HomeActivity extends BaseActivity<NewListViewModel, ActivityHomeBin
                     .addItem(new BottomNavigationItem(R.drawable.message_24, "微头条"))
                     .addItem(new BottomNavigationItem(R.drawable.box_24, "我的"))
                     .initialise( );
+//
+//
+//            mainTab.getTitleView(0).setTextSize(24);
+//            mainTab.setOnTabSelectListener(new OnTabSelectListener( ) {
+//                @Override
+//                public void onTabSelect(int position) {
+//
+//                    for (int i=0; i < mainTab.getTabCount( ); i++) {
+//                        if (i == position) {
+//                            mainTab.getTitleView(i).setTextSize(24);
+//                        } else {
+//                            mainTab.getTitleView(i).setTextSize(16);
+//                        }
+//                    }
+//                }
+//
+//                @Override
+//                public void onTabReselect(int position) {
+//
+//                }
+//            });
+//
+//            mainVp.addOnPageChangeListener(new ViewPager.OnPageChangeListener( ) {
+//                @Override
+//                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//
+//                }
+//
+//                @Override
+//                public void onPageSelected(int position) {
+//                    for (int i=0; i < mainTab.getTabCount( ); i++) {
+//                        if (i == position) {
+//                            mainTab.getTitleView(i).setTextSize(24);
+//                        } else {
+//                            mainTab.getTitleView(i).setTextSize(16);
+//                        }
+//                    }
+//                }
+//
+//                @Override
+//                public void onPageScrollStateChanged(int state) {
+//
+//                }
+//            });
+//
+//            UMImage image=new UMImage(HomeActivity.this, R.drawable.box_24);//本地文件
+//            homeShare.setOnClickListener(new View.OnClickListener( ) {
+//                @Override
+//                public void onClick(View v) {
+//                    new ShareAction(HomeActivity.this).withMedia(image).setDisplayList(SHARE_MEDIA.QZONE, SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN)
+//                            .setCallback(new UMShareListener( ) {
+//                                @Override
+//                                public void onStart(SHARE_MEDIA share_media) {
+//
+//                                }
+//
+//                                @Override
+//                                public void onResult(SHARE_MEDIA share_media) {
+//
+//                                }
+//
+//                                @Override
+//                                public void onError(SHARE_MEDIA share_media, Throwable throwable) {
+//
+//                                }
+//
+//                                @Override
+//                                public void onCancel(SHARE_MEDIA share_media) {
+//
+//                                }
+//                            }).open( );
+//                }
+//            });
+//
+//
+//            homeAdd.setOnClickListener(new View.OnClickListener( ) {
+//                @Override
+//                public void onClick(View v) {
+//                    PopupWindow popupWindow=new PopupWindow(HomeActivity.this);
+//                    popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+//                    popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+//                    popupWindow.setOutsideTouchable(true);
+//                    View inflate=LayoutInflater.from(HomeActivity.this).inflate(R.layout.item_pop, null);
+//                    popupWindow.setContentView(inflate);
+//                    popupWindow.showAsDropDown(v, 0, 0);
+//
+//                }
+//            });
 
 
-            mainTab.getTitleView(0).setTextSize(24);
-            mainTab.setOnTabSelectListener(new OnTabSelectListener( ) {
-                @Override
-                public void onTabSelect(int position) {
 
-                    for (int i=0; i < mainTab.getTabCount( ); i++) {
-                        if (i == position) {
-                            mainTab.getTitleView(i).setTextSize(24);
-                        } else {
-                            mainTab.getTitleView(i).setTextSize(16);
-                        }
-                    }
-                }
-
-                @Override
-                public void onTabReselect(int position) {
-
-                }
-            });
-
-            mainVp.addOnPageChangeListener(new ViewPager.OnPageChangeListener( ) {
-                @Override
-                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-                }
-
-                @Override
-                public void onPageSelected(int position) {
-                    for (int i=0; i < mainTab.getTabCount( ); i++) {
-                        if (i == position) {
-                            mainTab.getTitleView(i).setTextSize(24);
-                        } else {
-                            mainTab.getTitleView(i).setTextSize(16);
-                        }
-                    }
-                }
-
-                @Override
-                public void onPageScrollStateChanged(int state) {
-
-                }
-            });
-
-            UMImage image=new UMImage(HomeActivity.this, R.drawable.box_24);//本地文件
-            homeShare.setOnClickListener(new View.OnClickListener( ) {
-                @Override
-                public void onClick(View v) {
-                    new ShareAction(HomeActivity.this).withMedia(image).setDisplayList(SHARE_MEDIA.QZONE, SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN)
-                            .setCallback(new UMShareListener( ) {
-                                @Override
-                                public void onStart(SHARE_MEDIA share_media) {
-
-                                }
-
-                                @Override
-                                public void onResult(SHARE_MEDIA share_media) {
-
-                                }
-
-                                @Override
-                                public void onError(SHARE_MEDIA share_media, Throwable throwable) {
-
-                                }
-
-                                @Override
-                                public void onCancel(SHARE_MEDIA share_media) {
-
-                                }
-                            }).open( );
-                }
-            });
-
-
-            homeAdd.setOnClickListener(new View.OnClickListener( ) {
-                @Override
-                public void onClick(View v) {
-                    PopupWindow popupWindow=new PopupWindow(HomeActivity.this);
-                    popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-                    popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
-                    popupWindow.setOutsideTouchable(true);
-                    View inflate=LayoutInflater.from(HomeActivity.this).inflate(R.layout.item_pop, null);
-                    popupWindow.setContentView(inflate);
-                    popupWindow.showAsDropDown(v, 0, 0);
-
-                }
-            });
-
-        }
+    }
 
 
     @Override
