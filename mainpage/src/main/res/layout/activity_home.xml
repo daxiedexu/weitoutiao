@@ -16,6 +16,8 @@
         tools:context=".mvvm.HomeActivity">
 
         <LinearLayout
+            android:focusableInTouchMode="true "
+            android:focusable="true"
             android:gravity="center_vertical"
             android:background="#FF0000"
             android:orientation="horizontal"

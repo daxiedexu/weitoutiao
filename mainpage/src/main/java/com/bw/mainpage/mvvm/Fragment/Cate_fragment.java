@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ import com.bw.http.protocol.BaseRespEntity;
 import com.bw.mainpage.BR;
 import com.bw.mainpage.R;
 import com.bw.mainpage.databinding.ActivityHomeBinding;
+import com.bw.mainpage.mvvm.Adapter.ItemAdapter;
 import com.bw.mainpage.mvvm.HomeActivity;
 import com.bw.mainpage.mvvm.WebActivity;
 import com.bw.mainpage.mvvm.api.HomeApi;
@@ -57,13 +59,11 @@ public class Cate_fragment extends BaseFragment<NewListViewModel, ActivityHomeBi
     private SmartRefreshLayout cateSm;
     boolean refresh=false;
     int page=1;
-    Wn wn;
+    ItemAdapter wn;
     int index=0;
     int pageSize=12;
     NewsDetailEntity.DataBean data;
     private TextView cateTz;
-
-
 
     @Override
     protected void initEvent() {
@@ -71,16 +71,12 @@ public class Cate_fragment extends BaseFragment<NewListViewModel, ActivityHomeBi
         cateRv = (RecyclerView) getActivity().findViewById(R.id.cate_rv);
         cateSm = (SmartRefreshLayout)getActivity(). findViewById(R.id.cate_sm);
         cateSm.setOnRefreshLoadMoreListener(this);
-
         cateTz = (TextView) getActivity().findViewById(R.id.cate_tz);
-
         DividerItemDecoration dividerItemDecoration=new DividerItemDecoration(getContext( ), DividerItemDecoration.VERTICAL);
         cateRv.addItemDecoration(dividerItemDecoration);
         cateRv.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-
         getNet();
-
     }
 
     private void getNet() {
@@ -93,7 +89,6 @@ public class Cate_fragment extends BaseFragment<NewListViewModel, ActivityHomeBi
                     }
                 });
     }
-
 
     public void show(List<NewListEntity> data){
 
@@ -122,7 +117,7 @@ public class Cate_fragment extends BaseFragment<NewListViewModel, ActivityHomeBi
         }
 
         if(wn==null){
-            wn=new Wn(data);
+            wn=new ItemAdapter(data);
             cateRv.setAdapter(wn);
             wn.setOnItemClickListener(this::onItemClick);
         }else {
@@ -134,8 +129,6 @@ public class Cate_fragment extends BaseFragment<NewListViewModel, ActivityHomeBi
         }
         index=wn.getData().size();
     }
-
-
 
     @Override
     protected void loadData() {
@@ -176,49 +169,24 @@ public class Cate_fragment extends BaseFragment<NewListViewModel, ActivityHomeBi
         NewListEntity item=(NewListEntity) adapter.getItem(position);
 
         RetrofitManger.getInstance().getRetrofit().create(HomeApi.class)
-                .newsdeta(item.newscode+"")
+                .newsdeta(item.newscode)
                 .observe(getActivity( ), new Observer<NewsDetailEntity>( ) {
                     @Override
                     public void onChanged(NewsDetailEntity newsDetailEntity) {
+                        Log.i("123", "onChanged:++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ");
+                        Toast.makeText(getActivity(), "cg", Toast.LENGTH_SHORT).show( );
 
-                        data=newsDetailEntity.data;
-                        if(newsDetailEntity.code==200){
-                            Toast.makeText(getActivity(), "cg", Toast.LENGTH_SHORT).show( );
-                            Intent intent=new Intent(getActivity(), WebActivity.class);
-                            Bundle bundle=new Bundle( );
-                            bundle.putParcelable("newsDetail",data);
-                            intent.putExtras(bundle);
-                            startActivity(intent);
-                        }
+//                        data=newsDetailEntity.data;
+//                        if(newsDetailEntity.code==200){
+//                            Intent intent=new Intent(getActivity(), WebActivity.class);
+//                            Bundle bundle=new Bundle( );
+//                            bundle.putParcelable("newsDetail",data);
+//                            intent.putExtras(bundle);
+//                            startActivity(intent);
+//
+//                        }
                     }
                 });
-
     }
 
-    public class Wn extends BaseMultiItemQuickAdapter<NewListEntity, BaseViewHolder>{
-        public Wn(@Nullable List<NewListEntity> data) {
-            super(data);
-            addItemType(0,R.layout.item1);
-            addItemType(1,R.layout.item2);
-            addItemType(2,R.layout.item3);
-        }
-
-        @Override
-        protected void convert(@NotNull BaseViewHolder baseViewHolder, NewListEntity newListEntity) {
-
-            switch (baseViewHolder.getItemViewType()){
-                case 0:
-                    baseViewHolder.setText(R.id.item1_tv,newListEntity.title);
-                    break;
-                case 1:
-                    baseViewHolder.setText(R.id.item2_tv,newListEntity.title);
-                    Glide.with(getActivity()).load(newListEntity.mainimgurl).into((ImageView) baseViewHolder.findView(R.id.item2_img));
-                    break;
-                case 2:
-                    baseViewHolder.setText(R.id.item3_tv,newListEntity.title);
-                    Glide.with(getActivity()).load(newListEntity.mainimgurl).into((ImageView) baseViewHolder.findView(R.id.item3_img));
-                    break;
-            }
-        }
-    }
 }

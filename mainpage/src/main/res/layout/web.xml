@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.tencent.smtt.sdk.WebView
+    <data>
+        <variable
+            name="WebViewModel"
+            type="com.bw.mainpage.mvvm.viewmodel.NewListViewModel" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.tencent.smtt.sdk.WebView>
-</LinearLayout>
+        android:layout_height="match_parent"
+        tools:context=".mvvm.WebActivity">
+
+        <com.tencent.smtt.sdk.WebView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </com.tencent.smtt.sdk.WebView>
+
+    </LinearLayout>
+</layout>

@@ -175,11 +175,6 @@ public class HomeActivity extends BaseActivity<NewListViewModel, ActivityHomeBin
             }
         });
 
-
-
-
-
-
         UMImage image =new UMImage(HomeActivity.this, R.drawable.box_24);//本地文件
         homeShare.setOnClickListener(new View.OnClickListener( ) {
             @Override

@@ -1,12 +1,11 @@
 package com.bw.mainpage.mvvm;
 
 import android.content.Intent;
-import android.os.Parcelable;
 import android.widget.Toast;
 
 import com.bw.mainpage.BR;
 import com.bw.mainpage.R;
-import com.bw.mainpage.databinding.ActivityHomeBinding;
+import com.bw.mainpage.databinding.WebBinding;
 import com.bw.mainpage.mvvm.entity.NewsDetailEntity;
 import com.bw.mainpage.mvvm.viewmodel.NewListViewModel;
 import com.bw.mvvm_core.view.BaseActivity;
@@ -22,18 +21,19 @@ import java.util.HashMap;
  * Created by Android Studio.
  * User: 伊莎贝拉
  */
-public class WebActivity extends BaseActivity<NewListViewModel, ActivityHomeBinding> {
+public class WebActivity extends BaseActivity<NewListViewModel,WebBinding>  {
+
+
     @Override
     protected void initEvent() {
         Intent intent=getIntent( );
         NewsDetailEntity.DataBean newsDetail=intent.getParcelableExtra("newsDetail");
         Toast.makeText(this, newsDetail.url+"", Toast.LENGTH_SHORT).show( );
-
     }
 
     @Override
     protected void prepareSetVars(HashMap<Integer, Object> mMap) {
-        mMap.put(BR.HomeViewModel,mViewModel);
+        mMap.put(BR.WebViewModel,mViewModel);
     }
 
     @Override

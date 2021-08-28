@@ -33,10 +33,6 @@ public class GuideActivity extends BaseActivity<GuideViewModel, ActivityGuideBin
     private MyBtnView my2;
     private MyBtnView my3;
 
-
-
-
-
     @Override
     protected void initEvent() {
         my1 = (MyBtnView) findViewById(R.id.my_1);
