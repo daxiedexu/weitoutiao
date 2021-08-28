@@ -92,7 +92,6 @@ public class GuideActivity extends BaseActivity<GuideViewModel, ActivityGuideBin
         return new GuideViewModel(this);
     }
 
-    @Override
     protected int getLayout() {
         return R.layout.activity_guide;
     }

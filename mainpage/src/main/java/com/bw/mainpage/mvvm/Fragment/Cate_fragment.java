@@ -71,7 +71,11 @@ public class Cate_fragment extends BaseFragment<NewListViewModel, ActivityHomeBi
         cateRv = (RecyclerView) getActivity().findViewById(R.id.cate_rv);
         cateSm = (SmartRefreshLayout)getActivity(). findViewById(R.id.cate_sm);
         cateSm.setOnRefreshLoadMoreListener(this);
+
         cateTz = (TextView) getActivity().findViewById(R.id.cate_tz);
+
+
+
         DividerItemDecoration dividerItemDecoration=new DividerItemDecoration(getContext( ), DividerItemDecoration.VERTICAL);
         cateRv.addItemDecoration(dividerItemDecoration);
         cateRv.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -88,6 +92,7 @@ public class Cate_fragment extends BaseFragment<NewListViewModel, ActivityHomeBi
                         show(newListEntity.getData());
                     }
                 });
+
     }
 
     public void show(List<NewListEntity> data){
