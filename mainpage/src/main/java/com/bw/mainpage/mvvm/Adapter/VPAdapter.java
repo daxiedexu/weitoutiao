@@ -25,12 +25,12 @@ public class VPAdapter extends FragmentPagerAdapter {
     ArrayList<Fragment> fragments;
     ArrayList<String> strings;
 
-    public VPAdapter(@NonNull @NotNull FragmentManager fm, int behavior, ArrayList<Fragment> fragments) {
+    public VPAdapter(@NonNull FragmentManager fm, int behavior, ArrayList<Fragment> fragments) {
         super(fm, behavior);
         this.fragments=fragments;
     }
 
-    public VPAdapter(@NonNull  FragmentManager fm, int behavior, ArrayList<Fragment> fragments, ArrayList<String> strings) {
+    public VPAdapter(@NonNull @NotNull FragmentManager fm, int behavior, ArrayList<Fragment> fragments, ArrayList<String> strings) {
         super(fm, behavior);
         this.fragments=fragments;
         this.strings=strings;

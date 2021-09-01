@@ -5,7 +5,7 @@
     <data>
         <variable
             name="WebViewModel"
-            type="com.bw.mainpage.mvvm.viewmodel.NewListViewModel" />
+            type="com.bw.mainpage.mvvm.viewmodel.NewDetailViewModel" />
     </data>
 
     <LinearLayout
@@ -13,11 +13,132 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".mvvm.WebActivity">
-
-        <com.tencent.smtt.sdk.WebView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </com.tencent.smtt.sdk.WebView>
+            android:layout_weight="1"
+            android:layout_height="0dp">
+            <ImageView
+                android:id="@+id/web_img_back"
+                android:src="@drawable/back"
+                android:layout_alignParentLeft="true"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+            </ImageView>
+            <TextView
+                android:layout_weight="7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+            </TextView>
+            <ImageView
+                android:id="@+id/web_img_share"
+                android:src="@drawable/more"
+                android:layout_alignParentRight="true"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+            </ImageView>
+        </LinearLayout>
+        <ScrollView
+            android:layout_weight="20"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/web_tv_title"
+                    android:textSize="25sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </TextView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/web_img_head"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp">
+
+                    </ImageView>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+                        <TextView
+                            android:id="@+id/web_tv_author"
+                            android:textSize="15sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/web_tv_time"
+                            android:textSize="10sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp">
+
+                        </TextView>
+                    </LinearLayout>
+                </LinearLayout>
+                <com.tencent.smtt.sdk.WebView
+                    android:id="@+id/web_tv_web"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </com.tencent.smtt.sdk.WebView>
+            </LinearLayout>
+
+
+        </ScrollView>
+        <RelativeLayout
+            android:background="#A08E8E"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <EditText
+                android:id="@+id/web_et_write"
+                android:hint="写评论..."
+                android:textSize="14dp"
+                android:paddingLeft="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_centerVertical="true"
+                android:drawableLeft="@drawable/paint"
+                android:background="@drawable/edit_backcolor"
+                android:layout_width="210dp"
+                android:layout_height="32dp">
+            </EditText>
+            <ImageView
+                android:id="@+id/web_img_say"
+                android:layout_marginLeft="28dp"
+                android:layout_toRightOf="@id/web_et_write"
+                android:src="@drawable/say"
+                android:layout_centerVertical="true"
+                android:layout_width="21dp"
+                android:layout_height="30dp">
+            </ImageView>
+            <ImageView
+                android:id="@+id/web_img_collect"
+                android:layout_marginLeft="28dp"
+                android:layout_toRightOf="@id/web_img_say"
+                android:src="@drawable/collect_false"
+                android:layout_centerVertical="true"
+                android:layout_width="30dp"
+                android:layout_height="30dp">
+            </ImageView>
+            <ImageView
+                android:id="@+id/web_img_upload"
+                android:layout_marginLeft="28dp"
+                android:layout_toRightOf="@id/web_img_collect"
+                android:src="@drawable/upload"
+                android:layout_centerVertical="true"
+                android:layout_width="30dp"
+                android:layout_height="30dp">
+            </ImageView>
+        </RelativeLayout>
+
 
     </LinearLayout>
 </layout>

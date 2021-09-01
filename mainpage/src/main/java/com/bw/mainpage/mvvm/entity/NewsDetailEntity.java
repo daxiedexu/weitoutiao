@@ -20,7 +20,7 @@ public class NewsDetailEntity {
     public String msg;
 
 
-    public static class DataBean implements Parcelable  {
+    public class DataBean  {
         public Integer id;
         public String title;
         public String content;
@@ -30,53 +30,68 @@ public class NewsDetailEntity {
         public String publishtime;
         public String isstaticpage;
 
-        protected DataBean(Parcel in) {
-            if (in.readByte( ) == 0) {
-                id=null;
-            } else {
-                id=in.readInt( );
-            }
-            title=in.readString( );
-            content=in.readString( );
-            url=in.readString( );
-            newscode=in.readString( );
-            auth=in.readString( );
-            publishtime=in.readString( );
-            isstaticpage=in.readString( );
+        public Integer getId() {
+            return id;
         }
 
-        public static final Creator<DataBean> CREATOR=new Creator<DataBean>( ) {
-            @Override
-            public DataBean createFromParcel(Parcel in) {
-                return new DataBean(in);
-            }
-
-            @Override
-            public DataBean[] newArray(int size) {
-                return new DataBean[size];
-            }
-        };
-
-        @Override
-        public int describeContents() {
-            return 0;
+        public void setId(Integer id) {
+            this.id = id;
         }
 
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            if (id == null) {
-                dest.writeByte((byte) 0);
-            } else {
-                dest.writeByte((byte) 1);
-                dest.writeInt(id);
-            }
-            dest.writeString(title);
-            dest.writeString(content);
-            dest.writeString(url);
-            dest.writeString(newscode);
-            dest.writeString(auth);
-            dest.writeString(publishtime);
-            dest.writeString(isstaticpage);
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getContent() {
+            return content;
+        }
+
+        public void setContent(String content) {
+            this.content = content;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public String getNewscode() {
+            return newscode;
+        }
+
+        public void setNewscode(String newscode) {
+            this.newscode = newscode;
+        }
+
+        public String getAuth() {
+            return auth;
+        }
+
+        public void setAuth(String auth) {
+            this.auth = auth;
+        }
+
+        public String getPublishtime() {
+            return publishtime;
+        }
+
+        public void setPublishtime(String publishtime) {
+            this.publishtime = publishtime;
+        }
+
+        public String getIsstaticpage() {
+            return isstaticpage;
+        }
+
+        public void setIsstaticpage(String isstaticpage) {
+            this.isstaticpage = isstaticpage;
         }
     }
 

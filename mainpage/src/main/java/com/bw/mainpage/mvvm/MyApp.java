@@ -31,7 +31,7 @@ public class MyApp extends Application {
         sharedPreferencesHelper=new SharedPreferencesHelper(this,"umeng");
 
         //设置LOG开关，默认为false
-        UMConfigure.setLogEnabled(true);
+        UMConfigure.setLogEnabled(false);
 
         //友盟预初始化
 //        UMConfigure.preInit(getApplicationContext(),"60938eaac9aacd3bd4c2f7a7","Umeng");

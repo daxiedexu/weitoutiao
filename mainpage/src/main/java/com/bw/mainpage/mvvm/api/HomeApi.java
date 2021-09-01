@@ -6,10 +6,12 @@ import com.bw.http.protocol.BaseRespEntity;
 import com.bw.mainpage.mvvm.entity.GuideEntity;
 import com.bw.mainpage.mvvm.entity.NewListEntity;
 import com.bw.mainpage.mvvm.entity.NewsDetailEntity;
+import com.bw.mainpage.mvvm.entity.UserCommentEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -27,8 +29,10 @@ public interface HomeApi {
     LiveData<BaseRespEntity<List<GuideEntity>>> guide();
     @GET("api/News/getNews?")
     LiveData<BaseRespEntity<List<NewListEntity>>> newList(@Query("newstype") int newstype, @Query("pagenum") int pagenum, @Query("pagesize") int pagesize);
-    @GET("api/NewsDetail/getNewsDetail")
-    LiveData<NewsDetailEntity> newsdeta(@Query("newscode") String newscode);
+    @GET("api/NewsDetail/getNewsDetail?")
+    Observable<BaseRespEntity<NewsDetailEntity>> newsdeta(@Query("newscode") String newscode);
+    @GET("api/HeadLine/getHeadlineByUserId")
+    LiveData<BaseRespEntity<List<UserCommentEntity>>> comment(@Query("userid") Integer userid);
 
 
 }
